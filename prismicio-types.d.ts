@@ -62,6 +62,8 @@ export type NavigationDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | SplitImageTextSlice
+  | TextSliceSlice
   | HeroSlice
   | QuoteSlice
   | TextSlice
@@ -482,6 +484,121 @@ type QuoteSliceVariation = QuoteSliceDefault;
 export type QuoteSlice = prismic.SharedSlice<"quote", QuoteSliceVariation>;
 
 /**
+ * Primary content in *SplitImageText → SplitImageRight → Primary*
+ */
+export interface SplitImageTextSliceDefaultPrimary {
+  /**
+   * Text field in *SplitImageText → SplitImageRight → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_image_text.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * Image field in *SplitImageText → SplitImageRight → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_image_text.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Button Link field in *SplitImageText → SplitImageRight → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_image_text.default.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+
+  /**
+   * Button Label field in *SplitImageText → SplitImageRight → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_image_text.default.primary.button_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_label: prismic.KeyTextField;
+}
+
+/**
+ * SplitImageRight variation for SplitImageText Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SplitImageTextSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SplitImageTextSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *SplitImageText → SplitImageLeft → Primary*
+ */
+export interface SplitImageTextSliceSplitImageRightPrimary {
+  /**
+   * Text field in *SplitImageText → SplitImageLeft → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_image_text.splitImageRight.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * Image field in *SplitImageText → SplitImageLeft → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: split_image_text.splitImageRight.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * SplitImageLeft variation for SplitImageText Slice
+ *
+ * - **API ID**: `splitImageRight`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SplitImageTextSliceSplitImageRight = prismic.SharedSliceVariation<
+  "splitImageRight",
+  Simplify<SplitImageTextSliceSplitImageRightPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *SplitImageText*
+ */
+type SplitImageTextSliceVariation =
+  | SplitImageTextSliceDefault
+  | SplitImageTextSliceSplitImageRight;
+
+/**
+ * SplitImageText Shared Slice
+ *
+ * - **API ID**: `split_image_text`
+ * - **Description**: SplitImageText
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SplitImageTextSlice = prismic.SharedSlice<
+  "split_image_text",
+  SplitImageTextSliceVariation
+>;
+
+/**
  * Primary content in *Text → Default → Primary*
  */
 export interface TextSliceDefaultPrimary {
@@ -550,6 +667,111 @@ type TextSliceVariation = TextSliceDefault | TextSliceTwoColumns;
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type TextSlice = prismic.SharedSlice<"text", TextSliceVariation>;
+
+/**
+ * Primary content in *TextSlice → Default → Primary*
+ */
+export interface TextSliceSliceDefaultPrimary {
+  /**
+   * Text field field in *TextSlice → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_slice.default.primary.text_field
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text_field: prismic.RichTextField;
+
+  /**
+   * Text description field in *TextSlice → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Text description
+   * - **API ID Path**: text_slice.default.primary.text_description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text_description: prismic.RichTextField;
+}
+
+/**
+ * Default variation for TextSlice Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextSliceSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TextSliceSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *TextSlice → Call to Action Button → Primary*
+ */
+export interface TextSliceSliceCallToActionButtonPrimary {
+  /**
+   * Text field field in *TextSlice → Call to Action Button → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_slice.callToActionButton.primary.text_field
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text_field: prismic.RichTextField;
+
+  /**
+   * Button Link field in *TextSlice → Call to Action Button → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_slice.callToActionButton.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+
+  /**
+   * Button Label field in *TextSlice → Call to Action Button → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_slice.callToActionButton.primary.button_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_label: prismic.KeyTextField;
+}
+
+/**
+ * Call to Action Button variation for TextSlice Slice
+ *
+ * - **API ID**: `callToActionButton`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextSliceSliceCallToActionButton = prismic.SharedSliceVariation<
+  "callToActionButton",
+  Simplify<TextSliceSliceCallToActionButtonPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *TextSlice*
+ */
+type TextSliceSliceVariation =
+  | TextSliceSliceDefault
+  | TextSliceSliceCallToActionButton;
+
+/**
+ * TextSlice Shared Slice
+ *
+ * - **API ID**: `text_slice`
+ * - **Description**: TextSlice
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextSliceSlice = prismic.SharedSlice<
+  "text_slice",
+  TextSliceSliceVariation
+>;
 
 /**
  * Primary content in *TextWithImage → Default → Primary*
@@ -674,6 +896,17 @@ declare module "@prismicio/client" {
     ): prismic.Client<AllDocumentTypes>;
   }
 
+  interface CreateWriteClient {
+    (
+      repositoryNameOrEndpoint: string,
+      options: prismic.WriteClientConfig,
+    ): prismic.WriteClient<AllDocumentTypes>;
+  }
+
+  interface CreateMigration {
+    (): prismic.Migration<AllDocumentTypes>;
+  }
+
   namespace Content {
     export type {
       NavigationDocument,
@@ -704,12 +937,24 @@ declare module "@prismicio/client" {
       QuoteSliceDefaultPrimary,
       QuoteSliceVariation,
       QuoteSliceDefault,
+      SplitImageTextSlice,
+      SplitImageTextSliceDefaultPrimary,
+      SplitImageTextSliceSplitImageRightPrimary,
+      SplitImageTextSliceVariation,
+      SplitImageTextSliceDefault,
+      SplitImageTextSliceSplitImageRight,
       TextSlice,
       TextSliceDefaultPrimary,
       TextSliceTwoColumnsPrimary,
       TextSliceVariation,
       TextSliceDefault,
       TextSliceTwoColumns,
+      TextSliceSlice,
+      TextSliceSliceDefaultPrimary,
+      TextSliceSliceCallToActionButtonPrimary,
+      TextSliceSliceVariation,
+      TextSliceSliceDefault,
+      TextSliceSliceCallToActionButton,
       TextWithImageSlice,
       TextWithImageSliceDefaultPrimary,
       TextWithImageSliceWithButtonPrimary,

@@ -48,14 +48,14 @@ type ImageCardsProps = SliceComponentProps<Content.ImageCardsSlice>;
 
 const ImageCards = ({ slice }: ImageCardsProps) => {
   return (
-    <Bounded as="section" className="bg-white">
+    <Bounded as="section" className="bg-gray-200">
       <div className="grid gap-12">
         {isFilled.richText(slice.primary.heading) && (
           <Heading className="text-center">
             <PrismicText field={slice.primary.heading} />
           </Heading>
         )}
-        <ul className="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
+        <ul className="grid grid-cols-1 items-start gap-6 md:grid-cols-2">
           {slice.primary.cards.map((card) => (
             <ImageCard key={card.image.url} card={card} />
           ))}

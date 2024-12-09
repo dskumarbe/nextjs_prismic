@@ -7,20 +7,10 @@
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
-						"type": "heading1",
-						"content": {
-							"text": "Responsive Software",
-							"spans": []
-						},
-						"direction": "ltr"
-					},
-					{
 						"type": "paragraph",
 						"content": {
-							"text": "Laboris adipisicing est duis in laboris in officia Lorem officia enim culpa consequat sint ut proident.",
-							"spans": []
-						},
-						"direction": "ltr"
+							"text": "Mollit Lorem velit excepteur. Esse sint dolor ex laboris nostrud culpa ex ut cillum aliqua. Officia do consequat nisi consequat consequat adipisicing."
+						}
 					}
 				]
 			},
